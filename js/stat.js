@@ -38,9 +38,15 @@ window.renderStatistics = function(ctx, players, times) {
 
   var maxTime = getMaxElement(times);
 
+  var colors = ['rgba(255, 0, 0, 1)', 'rgba(31, 58, 147, 1)', 'rgba(31, 58, 147, 0.6)', 'rgba(31, 58, 147, 1)']
+  var saturations = ['none', 'saturate(10%)', 'saturate(10%)', 'saturate(10%)'];
+
   for (var i = 0; i < players.length; i++) {
     ctx.fillText(players[i], CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * i + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP);
+    ctx.fillStyle = colors[i];
+    ctx.filter = saturations[i];
     ctx.fillRect(CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * i + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP - FONT_HEIGHT - barHeight, BAR_WIDTH, (barHeight * times[i])/maxTime);
+    ctx.fillStyle = 'black';
   }
 };
 
