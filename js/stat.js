@@ -23,8 +23,9 @@ var getMaxElement = function (arr) {
     if (arr[i] > maxElement) {
       maxElement = arr[i];
     }
-  return maxElement;
   }
+  console.log(maxElement);
+  return maxElement;
 }
 
 var renderText = function (ctx, x, y, text) {
@@ -49,10 +50,22 @@ window.renderStatistics = function(ctx, players, times) {
     drawSingleBar(ctx, i, players[i], times[i], maxTime);
   }
 
+  function getFillStyle(playerName) {
+    if (playerName === 'Вы') {
+      return 'rgba(255, 0, 0, 1)';
+    }
+    var opacity = Math.random();
+    if (opacity == 0 || opacity == 1) {
+      return 'rgba(31, 58, 147, 1';
+    }
+
+    return 'rgba(31, 58, 147, ' + opacity + ')';
+  }
+
   function drawSingleBar(ctx, playerIndex, playerName, playerTime, max) {
     var height = BAR_HEIGHT * (playerTime / max);
     renderText(ctx, CLOUD_X + (BAR_WIDTH + BAR_GAP) * playerIndex + BAR_WIDTH, BAR_START_Y, playerName);
-    ctx.fillStyle = (playerName === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgba(31, 58, 147, ' + Math.random() + ')';
+    ctx.fillStyle = getFillStyle(playerName);
     ctx.fillRect(CLOUD_X + (BAR_WIDTH + BAR_GAP) * playerIndex + BAR_WIDTH, BAR_START_Y - FONT_HEIGHT - height, BAR_WIDTH, height);
     renderText(ctx, CLOUD_X + (BAR_WIDTH + BAR_GAP) * playerIndex + BAR_WIDTH, BAR_START_Y - FONT_HEIGHT - height - FONT_HEIGHT, Math.floor(playerTime));
   }
