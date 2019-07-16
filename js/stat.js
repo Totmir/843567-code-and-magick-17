@@ -24,7 +24,6 @@ var getMaxElement = function (arr) {
       maxElement = arr[i];
     }
   }
-  console.log(maxElement);
   return maxElement;
 }
 
@@ -70,40 +69,3 @@ window.renderStatistics = function(ctx, players, times) {
     renderText(ctx, CLOUD_X + (BAR_WIDTH + BAR_GAP) * playerIndex + BAR_WIDTH, BAR_START_Y - FONT_HEIGHT - height - FONT_HEIGHT, Math.floor(playerTime));
   }
 };
-
-/*   var playerIndex = 0;
-  var playerName = 'Вы';
-
-
-  ctx.fillText(playerName, CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP);
-  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP - FONT_HEIGHT - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT);
-  ctx.fillStyle = 'black';
-
-  var playerIndex = 1;
-  var playerName = 'Кекс';
-
-  ctx.fillText(playerName, CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP);
-  ctx.fillStyle = 'rgba(31, 58, 147, 1)';
-  ctx.fillRect(CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP - FONT_HEIGHT - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT);
-  ctx.fillStyle = 'black';
-
-  var playerIndex = 2;
-  var playerName = 'Катя';
-
-  ctx.fillText(playerName, CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP);
-  ctx.filter = 'saturate(10%)';
-  ctx.fillStyle = 'rgba(31, 58, 147, 0.6)';
-  ctx.fillRect(CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP - FONT_HEIGHT - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT);
-  ctx.filer = 'none';
-  ctx.fillStyle = 'black';
-
-  var playerIndex = 3;
-  var playerName = 'Игорь';
-
-  ctx.fillText(playerName, CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP);
-  ctx.filter = 'saturate(10%)';
-  ctx.fillStyle = 'rgba(31, 58, 147, 1)';
-  ctx.fillRect(CLOUD_X + GAP + (CLOUD_WIDTH / QUANTITY_OF_BARS) * playerIndex + CLOUD_WIDTH / QUANTITY_OF_BARS - BAR_WIDTH, CLOUD_HEIGHT - CLOUD_Y - GAP - FONT_HEIGHT - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT);
-  ctx.filter = 'none';
-  ctx.fillStyle = 'black'; */
