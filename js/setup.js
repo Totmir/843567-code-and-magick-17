@@ -3,7 +3,7 @@ var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var setupsSelector = document.querySelectorAll('.setup');
+var setupsSelector = document.querySelector('.setup');
 setupsSelector.classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -19,28 +19,56 @@ var getRandomArrayValue = function(myArray) {
 var characters = [
   {
     name: randomArrayValue(names),
+    surname: randomArrayValue(surnames),
     coatColor: randomArrayValue(coatColors),
     eyesColor: randomArrayValue(eyesColors),
   },
   {
     name: randomArrayValue(names),
-    coatColor: randomArrayValue(coatColors),
-    eyesColor: randomArrayValue(eyesColors),
-  },
-  {
-    wizardNumber: 3,
-    name: randomArrayValue(names),
+    surname: randomArrayValue(surnames),
     coatColor: randomArrayValue(coatColors),
     eyesColor: randomArrayValue(eyesColors),
   },
   {
     name: randomArrayValue(names),
+    surname: randomArrayValue(surnames),
+    coatColor: randomArrayValue(coatColors),
+    eyesColor: randomArrayValue(eyesColors),
+  },
+  {
+    name: randomArrayValue(names),
+    surname: randomArrayValue(surnames),
     coatColor: randomArrayValue(coatColors),
     eyesColor: randomArrayValue(eyesColors),
   }
 ];
 
-var renderWizard = function(wizard) {
+// Генерирует список волшебников
+var generateWizardList = function (wizardsNumber) {
+  for (var i = 1; i <= wizardsNumber; i++) {
+    wizardElement.querySelector('.setup-similar-label').textContent = randomArrayValue(names) + randomArrayValue(surnames);
+    wizardElement.querySelector('.wizard-coat').setAttribute('fill', randomArrayValue(coatColors));
+    wizardElement.querySelector('.wizard-eyes').setAttribute('fill', randomArrayValue(eyesColors));
+  }
+}
+
+// Генерирует конкретного волшебника
+var generateWizard = function (wizardNumber) {
+  wizardElement.querySelector('.setup-similar-label').textContent = characters[wizardNumber].name + characters[wizardNumber].surname;
+  wizardElement.querySelector('.wizard-coat').setAttribute('fill', characters[wizardNumber].coatColor);
+  wizardElement.querySelector('.wizard-eyes').setAttribute('fill', characters[wizardNumber].eyesColor);
+}
+
+// Отрисовывает всех волшебников
+var renderWizards = function(characters) {
+  for (var i=0; i < characters.length; i++) {
+    var wizardElement = similarWizardTemplate.cloneNode(true);
+    document.createDocumentFragment().appendChild(generateWizardList(characters.length))
+  }
+  return wizardElement;
+}
+
+/* var renderWizard = function(wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = randomArrayValue(names) + randomArrayValue(surnames);
@@ -55,4 +83,4 @@ for (var i = 0; i < characters.length; i++) {
   fragment.appendChild(renderWizard(characters.length));
 }
 
-similarListElement.appendChild(fragment);
+similarListElement.appendChild(fragment); */
