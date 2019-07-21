@@ -1,3 +1,5 @@
+const wizardsNumber = 4;
+
 var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -16,17 +18,17 @@ var getRandomArrayValue = function(myArray) {
   return rand = myArray[Math.floor(Math.random() * myArray.length)];
 }
 
-var characters = [];
-
 // Генерирует список волшебников
 var generateWizardList = function (wizardsNumber) {
-  for (var i = 0; i < wizardsNumber; i++) {
-      characters.push({
-      name: randomArrayValue(names) + ' ' + randomArrayValue(surnames),
-      coatColor: randomArrayValue(coatColors),
-      eyesColor: randomArrayValue(eyesColors)
-    });
-  }
+  var characters = [];
+    for (var i = 0; i < wizardsNumber; i++) {
+        characters.push({
+        name: getRandomArrayValue(names) + ' ' + getRandomArrayValue(surnames),
+        coatColor: getRandomArrayValue(coatColors),
+        eyesColor: getRandomArrayValue(eyesColors)
+      });
+    }
+  return characters;
 }
 
 // Генерирует конкретного волшебника
@@ -48,6 +50,4 @@ var renderWizards = function(characters) {
   return wizardElement;
 }
 
-generateWizardList(4);
-renderWizards();
-
+renderWizards(generateWizardList(wizardsNumber));
