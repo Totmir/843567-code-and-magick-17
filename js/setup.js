@@ -1,6 +1,6 @@
 'use strict';
 
-var wizardsCount = 4;
+var WZARDS_COUNT = 4;
 
 var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -11,7 +11,7 @@ var setupsSelector = document.querySelector('.setup');
 setupsSelector.classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
 
-/* var similarListElement = document.querySelector('.setup-similar-list'); */
+var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
@@ -53,4 +53,4 @@ var renderWizards = function (characters) {
   return wizardElement;
 };
 
-renderWizards(generateWizardList(wizardsCount));
+renderWizards(generateWizardList(WZARDS_COUNT));
