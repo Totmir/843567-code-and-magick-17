@@ -54,7 +54,7 @@ window.renderStatistics = function (ctx, players, times) {
   };
 
   for (var i = 0; i < players.length; i++) {
-    drawSingleBar(ctx, i, players[i], times[i], maxTime);
+    drawSingleBar(i, players[i], times[i], maxTime);
   }
 
   function getFillStyle(playerName) {
