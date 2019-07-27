@@ -1,17 +1,24 @@
 'use strict';
 
-var wizardsCount = 4;
+var WIZARDS_COUNT = 4;
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 var names = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
+var wizardFireball = ['#30a8ee', '#5ce6c0', '#e848d5', '#e6e848', '#ee4830'];
+var coat = document.querySelector('.setup-wizard .wizard-coat');
+var eyes = document.querySelector('.setup-wizard .wizard-eyes');
+var fireball = document.querySelector('.setup-fireball-wrap');
 
-var setupsSelector = document.querySelector('.setup');
-setupsSelector.classList.remove('hidden');
-document.querySelector('.setup-similar').classList.remove('hidden');
+var setup = document.querySelector('.setup');
+var setupSimilar = setup.querySelector('.setup-similar');
+var setupSimilarList = setup.querySelector('.setup-similar-list');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
 
-/* var similarListElement = document.querySelector('.setup-similar-list'); */
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
@@ -21,7 +28,7 @@ var getRandomArrayValue = function (myArray) {
   return rand;
 };
 
-// Генерирует список волшебников
+// Generate wizard list
 var generateWizardList = function (wizardsNumber) {
   var characters = [];
   for (var i = 0; i < wizardsNumber; i++) {
@@ -34,23 +41,75 @@ var generateWizardList = function (wizardsNumber) {
   return characters;
 };
 
-// Генерирует конкретного волшебника
-var generateWizard = function (wizard) {
+// Generate single wizard
+var generateWizard = function (wizardRandom) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
-  wizardElement.querySelector('.wizard-coat').setAttribute('fill', wizard.coatColor);
-  wizardElement.querySelector('.wizard-eyes').setAttribute('fill', wizard.eyesColor);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizardRandom.name;
+  wizardElement.querySelector('.wizard-coat').setAttribute('fill', wizardRandom.coatColor);
+  wizardElement.querySelector('.wizard-eyes').setAttribute('fill', wizardRandom.eyesColor);
   return wizardElement;
 };
 
-// Отрисовывает всех волшебников
+// Render all wizards
 var renderWizards = function (characters) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < characters.length; i++) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
     fragment.appendChild(generateWizard(characters[i]));
   }
-  return wizardElement;
+  setupSimilarList.appendChild(fragment);
+  setupSimilar.classList.remove('hidden');
+  setup.classList.remove('hidden');
 };
 
-renderWizards(generateWizardList(wizardsCount));
+renderWizards(generateWizardList(WIZARDS_COUNT));
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+coat.addEventListener('click', function () {
+  coat.style.fill = getRandomArrayValue(coatColors);
+  document.querySelector('[name="coat-color"]').value = coat.style.fill;
+});
+
+eyes.addEventListener('click', function () {
+  eyes.style.fill = getRandomArrayValue(eyesColors);
+  document.querySelector('[name="eyes-color"]').value = eyes.style.fill;
+});
+
+fireball.addEventListener('click', function () {
+  document.querySelector('[name="fireball-color"]').value = getRandomArrayValue(wizardFireball);
+  fireball.style.backgroundColor = document.querySelector('[name="fireball-color"]').value;
+});

@@ -45,7 +45,7 @@ window.renderStatistics = function (ctx, players, times) {
 
   var maxTime = getMaxElement(times);
 
-  var drawSingleBar = function (ctx, playerIndex, playerName, playerTime, max) {
+  var drawSingleBar = function (playerIndex, playerName, playerTime, max) {
     var height = BAR_HEIGHT * (playerTime / max);
     renderText(ctx, CLOUD_X + (BAR_WIDTH + BAR_GAP) * playerIndex + BAR_WIDTH, BAR_START_Y, playerName);
     ctx.fillStyle = getFillStyle(playerName);
@@ -54,18 +54,10 @@ window.renderStatistics = function (ctx, players, times) {
   };
 
   for (var i = 0; i < players.length; i++) {
-    drawSingleBar(ctx, i, players[i], times[i], maxTime);
+    drawSingleBar(i, players[i], times[i], maxTime);
   }
 
   function getFillStyle(playerName) {
-    if (playerName === 'Вы') {
-      return 'rgba(255, 0, 0, 1)';
-    }
-    var opacity = Math.random();
-    if (opacity === 0 || opacity === 1) {
-      return 'rgba(31, 58, 147, 1';
-    }
-
-    return 'rgba(31, 58, 147, ' + opacity + ')';
+    return (playerName === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgba(31, 58, 147, ' + Math.max(Math.random(), 0.1) + ')';
   }
 };
