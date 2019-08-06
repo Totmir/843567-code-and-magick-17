@@ -1,11 +1,8 @@
 'use strict';
 (function () {
 
-  var TOP_DISTANCE = 80;
-  var LEFT_DISTANCE = 50;
   var setupDialogElement = document.querySelector('.setup');
   var dialogHandler = setupDialogElement.querySelector('.upload');
-  var closeDialogHandler = setupDialogElement.querySelector('.setup-close');
 
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -35,10 +32,7 @@
       setupDialogElement.style.left = (setupDialogElement.offsetLeft - shift.x) + 'px';
 
     };
-    closeDialogHandler.addEventListener('click', function () {
-      setupDialogElement.style.top = TOP_DISTANCE + 'px';
-      setupDialogElement.style.left = LEFT_DISTANCE + '%';
-    });
+
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
@@ -46,8 +40,8 @@
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function (clickEvt) {
-          clickEvt.preventDefault();
+        var onClickPreventDefault = function (evtPrev) {
+          evtPrev.preventDefault();
           dialogHandler.removeEventListener('click', onClickPreventDefault);
         };
         dialogHandler.addEventListener('click', onClickPreventDefault);
@@ -58,4 +52,6 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+
 })();
