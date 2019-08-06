@@ -263,9 +263,9 @@ window.Game = (function () {
    */
   LevelsInitialize[Level.INTRO] = function (state) {
     state.objects.push(
-        // Установка персонажа в начальное положение. Он стоит в крайнем левом
-        // углу экрана, глядя вправо. Скорость перемещения персонажа на этом
-        // уровне равна 2px за кадр.
+    // Установка персонажа в начальное положение. Он стоит в крайнем левом
+    // углу экрана, глядя вправо. Скорость перемещения персонажа на этом
+    // уровне равна 2px за кадр.
         {
           direction: Direction.RIGHT,
           height: window.GameConstants.Wizard.getHeight(window.GameConstants.Wizard.width),
@@ -627,10 +627,10 @@ window.Game = (function () {
         this.commonRules = [
 
           /**
-           * Если персонаж мертв, игра прекращается.
-           * @param {Object} state
-           * @return {Verdict}
-           */
+          * Если персонаж мертв, игра прекращается.
+          * @param {Object} state
+          * @return {Verdict}
+          */
           function (state) {
             var me = state.objects.filter(function (object) {
               return object.type === ObjectType.ME;
@@ -642,19 +642,19 @@ window.Game = (function () {
           },
 
           /**
-           * Если нажата клавиша Esc игра ставится на паузу.
-           * @param {Object} state
-           * @return {Verdict}
-           */
+          * Если нажата клавиша Esc игра ставится на паузу.
+          * @param {Object} state
+          * @return {Verdict}
+          */
           function (state) {
             return state.keysPressed.ESC ? Verdict.PAUSE : Verdict.CONTINUE;
           },
 
           /**
-           * Игра прекращается если игрок продолжает играть в нее два часа подряд.
-           * @param {Object} state
-           * @return {Verdict}
-           */
+          * Игра прекращается если игрок продолжает играть в нее два часа подряд.
+          * @param {Object} state
+          * @return {Verdict}
+          */
           function (state) {
             return Date.now() - state.startTime > 3 * 60 * 1000 ?
               Verdict.FAIL :
