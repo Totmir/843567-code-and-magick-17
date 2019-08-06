@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var CLOUD_WIDTH = 420;
   var CLOUD_HEIGHT = 270;
@@ -38,6 +39,7 @@
       ctx.fillText(players[i], CLOUD_X + X_GAP + i * (BAR_WIDTH + BAR_GAP), CLOUD_Y + Y_GAP + FONT_GAP + BAR_CHART_GAP);
       ctx.fillText(Math.round(times[i]), CLOUD_X + X_GAP + i * (BAR_WIDTH + BAR_GAP), CLOUD_Y + Y_GAP + 2 * FONT_GAP + BAR_CHART_HEIGHT - Math.round(times[i] * BAR_CHART_HEIGHT / Math.max.apply(null, times)) - TIME_GAP);
       ctx.fillRect(CLOUD_X + X_GAP + i * (BAR_WIDTH + BAR_GAP), CLOUD_Y + Y_GAP + 2 * FONT_GAP + BAR_CHART_HEIGHT - Math.round(times[i] * BAR_CHART_HEIGHT / Math.max.apply(null, times)), BAR_WIDTH, Math.round(times[i] * BAR_CHART_HEIGHT / Math.max.apply(null, times)));
+
     }
   };
 
@@ -47,6 +49,8 @@
 
     renderText(ctx, '16px PT Mono', '#000', 'Ура вы победили!', 'Список результатов:');
 
+
     renderPlayerStatisctics(ctx, names, times);
   };
 })();
+
