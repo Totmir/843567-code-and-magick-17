@@ -33,6 +33,7 @@ var color = function (min, max) {
 };
 
 // Функция поиска максимального элемента массива времен
+
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
   for (var i = 1; i < arr.length; i++) {
@@ -67,5 +68,6 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillRect(positionRectX += 90, POSITION_RECT_Y, 40, ((HEIGHT_RECT * times[i]) / maxTime));
     ctx.fillStyle = 'black';
+
   }
 };
